@@ -1,0 +1,101 @@
+*.joshua-m-baker.com, joshua-m-baker.com {
+
+    tls {
+        dns cloudflare {$CF_API_TOKEN}
+    }
+
+    @flame host flame.joshua-m-baker.com
+    @wud host wud.joshua-m-baker.com
+    @hass host hass.joshua-m-baker.com
+    @graf host graf.joshua-m-baker.com
+    @jellyfin host jellyfin.joshua-m-baker.com
+    @prom host prom.joshua-m-baker.com
+    @tandoor host tandoor.joshua-m-baker.com
+    @mealie host mealie.joshua-m-baker.com
+    @notes host notes.joshua-m-baker.com
+    @dozzle {
+        host dozzle.joshua-m-baker.com
+        host logs.joshua-m-baker.com
+    } 
+
+    @spoonfull {
+        host spoonfull.joshua-m-baker.com
+        host spoonfull.dev.joshua-m-baker.com
+        host dev.joshua-m-baker.com
+    }
+
+    @spoonfullfe host spoonfullfe.joshua-m-baker.com 
+
+    @sync host sync.joshua-m-baker.com
+    @linkding {
+        host linkding.joshua-m-baker.com
+        host link.joshua-m-baker.com
+    }
+
+    handle @linkding {
+        reverse_proxy linkding:9090
+    }
+
+    handle @dozzle {
+        reverse_proxy dozzle:8080
+    }
+
+    handle @sync {
+        reverse_proxy 192.168.0.51:8384
+    }
+
+    handle @notes {
+        reverse_proxy silverbullet:3000
+    }
+
+    handle @flame {
+        reverse_proxy flame:5005
+    }
+    handle @mealie {
+        reverse_proxy mealie:9000
+    }
+    handle @wud {
+        reverse_proxy wud:3000
+    }
+
+    handle @hass {
+        reverse_proxy homeassistant:8123
+    }
+
+    handle @graf {
+        reverse_proxy grafana:3000
+    }
+
+    handle @jellyfin {
+        reverse_proxy jellyfin:8096
+    }
+
+    handle @prom {
+        reverse_proxy prometheus:9090
+    }
+
+    handle @tandoor {
+        reverse_proxy tandoor-nginx_recipes-1:80
+    }
+
+    handle @spoonfull {
+        route /api/* {
+            reverse_proxy spoonfull:8080
+        }  
+        route /swagger/* {
+            reverse_proxy spoonfull:8080
+        }  
+        route /* {
+            reverse_proxy spoonfull-fe:3000
+        }
+    }
+
+    handle @spoonfullfe {
+        reverse_proxy spoonfull-fe:3000
+    }
+
+    handle {
+        reverse_proxy flame:5005
+    }
+}
+

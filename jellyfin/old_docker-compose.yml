@@ -1,0 +1,27 @@
+---
+version: "2.1"
+services:
+  jellyfin:
+    image: ghcr.io/linuxserver/jellyfin
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.joshua-m-baker.com
+    volumes:
+      - /home/josh/docker/jellyfin/config:/config
+      - /home/josh/docker/jellyfin/media:/data/media
+      - /home/josh/docker/jellyfin/youtube:/data/youtube
+
+    ports:
+         - 8096:8096
+         - 8920:8096
+         - 7359:7359/udp
+         - 1900:1900/udp
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: caddy_net

@@ -1,0 +1,21 @@
+services:
+  whatsupdocker:
+    image: getwud/wud
+    container_name: wud
+    # restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../spoonfull/docker-compose.yml:/wud/spoonfull-compose.yml
+    environment:
+      - WUD_REGISTRY_HUB_PUBLIC_LOGIN=${DOCKER_HUB_LOGIN}
+      - WUD_REGISTRY_HUB_PUBLIC_TOKEN=${DOCKER_HUB_TOKEN}
+      - WUD_WATCHER_LOCAL_WATCHBYDEFAULT=false
+      - WUD_WATCHER_LOCAL_CRON=*/5 * * * *
+      - WUD_TRIGGER_DOCKERCOMPOSE_SPOONFULL_FILE=/wud/spoonfull-compose.yml
+      - WUD_TRIGGER_DOCKERCOMPOSE_SPOONFULL_BACKUP=true
+
+networks:
+  default:
+    name: caddy_net
+    external: true
+

@@ -1,0 +1,12 @@
+services:
+  silverbullet:
+    image: ghcr.io/silverbulletmd/silverbullet:v2
+    restart: unless-stopped
+    volumes:
+      - $DOCKER_VOLUMES/silverbullet:/space
+
+networks: 
+  default:
+    name: caddy_net
+    external: true
+

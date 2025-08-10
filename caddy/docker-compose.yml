@@ -1,0 +1,27 @@
+version: "3.7"
+services: 
+  caddy: 
+    build: ./dns-dockerfile
+    container_name: caddy
+    restart: unless-stopped
+    ports: 
+      - "80:80"
+      - "443:443"
+    environment:
+      CF_API_TOKEN: ${CF_API_TOKEN}
+    volumes:
+      - $PWD/caddyfile:/etc/caddy
+      - $DOCKER_VOLUMES/caddy/site:/srv
+      - $DOCKER_VOLUMES/caddy/caddy_data:/data
+      - $DOCKER_VOLUMES/caddy/caddy_config:/config
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+
+networks:
+  default:
+    name: caddy_net
+    external: true
+

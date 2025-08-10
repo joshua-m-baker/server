@@ -1,0 +1,36 @@
+services:
+  spoonfull:
+    image: joshuabaker97/spoonfull:16
+    container_name: spoonfull
+    restart: unless-stopped
+    environment:
+      DB_URL: jdbc:postgresql://spoonfull-postgres:5432/postgres
+      DB_USER: spoonfull
+      DB_PASS: spoonfull
+    labels:
+      - wud.watch=true
+
+  spoonfull-fe:
+    image: smiskus/spoonfull:4
+    container_name: spoonfull-fe
+    restart: unless-stopped
+    labels:
+      - wud.watch=true
+ 
+  spoonfull-postgres:
+    image: postgres
+    container_name: spoonfull-postgres
+    restart: unless-stopped
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_USER: spoonfull
+      POSTGRES_PASSWORD: spoonfull
+    volumes:
+      - ${SPOONFULL_DATA}:/var/lib/postgresql/data
+
+networks:
+  default:
+    name: caddy_net
+    external: true
+

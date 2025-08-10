@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  flame:
+    image: pawelmalak/flame
+    container_name: flame
+    volumes:
+      - $DOCKER_VOLUMES/flame/data:/app/data
+    ports:
+      - 5005:5005
+    restart: unless-stopped
+
+networks:
+  default:
+    name: caddy_net
+    external: true
+

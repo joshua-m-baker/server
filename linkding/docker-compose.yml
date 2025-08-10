@@ -1,0 +1,16 @@
+services:
+  linkding:
+    container_name: linkding
+    image: sissbruecker/linkding:1.40.0
+    volumes:
+      - $DOCKER_VOLUMES/linkding:/etc/linkding/data
+    env_file:
+      - .env
+    restart: unless-stopped
+
+networks: 
+  default:
+    name: caddy_net
+    external: true
+
+

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:2025.5.3"
+    volumes:
+      - $DOCKER_VOLUMES/home_assistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    privileged: true
+      #networks: 
+      #_hass_net:
+      #caddy_net:
+
+networks: 
+  default:
+    name: caddy_net
+    external: true
+
+  #_hass_net:
+  #external: true
+
+    
+
