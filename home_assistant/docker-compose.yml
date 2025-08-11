@@ -10,17 +10,9 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     privileged: true
-      #networks: 
-      #_hass_net:
-      #caddy_net:
 
 networks: 
   default:
     name: caddy_net
     external: true
-
-  #_hass_net:
-  #external: true
-
-    
 
