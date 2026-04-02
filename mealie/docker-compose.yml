@@ -1,6 +1,6 @@
 services:
   mealie:
-    image: ghcr.io/mealie-recipes/mealie:v3.0.2
+    image: ghcr.io/mealie-recipes/mealie:v3.9.0
     container_name: mealie
     restart: always
     deploy:
@@ -16,6 +16,7 @@ services:
       PGID: 1000
       TZ: America/Chicago
       BASE_URL: https://mealie.joshua-m-baker.com
+      TOKEN_TIME: 9599
 
 networks:
   default:
