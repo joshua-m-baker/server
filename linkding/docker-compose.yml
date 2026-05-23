@@ -1,7 +1,7 @@
 services:
   linkding:
     container_name: linkding
-    image: sissbruecker/linkding:1.40.0
+    image: sissbruecker/linkding:1.45.0
     volumes:
       - $DOCKER_VOLUMES/linkding:/etc/linkding/data
     env_file:

@@ -5,6 +5,7 @@
     }
 
     @flame host flame.joshua-m-baker.com
+    @cicd host cicd.joshua-m-baker.com
     @wud host wud.joshua-m-baker.com
     @hass host hass.joshua-m-baker.com
     @graf host graf.joshua-m-baker.com
@@ -54,10 +55,12 @@
     handle @mealie {
         reverse_proxy mealie:9000
     }
+    handle @cicd {
+        reverse_proxy wud_cicd:3000
+    }
     handle @wud {
         reverse_proxy wud:3000
     }
-
     handle @hass {
         reverse_proxy homeassistant:8123
     }

@@ -3,7 +3,7 @@ version: '3'
 services:
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:2026.2.3"
+    image: "ghcr.io/home-assistant/home-assistant:2026.5.4"
     volumes:
       - $DOCKER_VOLUMES/home_assistant/config:/config
       - /etc/localtime:/etc/localtime:ro

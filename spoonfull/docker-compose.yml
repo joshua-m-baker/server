@@ -11,7 +11,7 @@ services:
       - wud.watch=true
 
   spoonfull-fe:
-    image: smiskus/spoonfull:4
+    image: smiskus/spoonfull:6
     container_name: spoonfull-fe
     restart: unless-stopped
     labels:
